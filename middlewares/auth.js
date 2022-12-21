@@ -1,8 +1,7 @@
 const { Unauthorized } = require("http-errors");
 const jwt = require("jsonwebtoken");
-require("dotenv").config();
 const { SECRET_KEY } = process.env;
-const { User } = require("../models/user");
+const { User } = require("../models");
 
 const auth = async (req, res, next) => {
   const { authorization = "" } = req.headers;
@@ -21,7 +20,7 @@ const auth = async (req, res, next) => {
     req.user = user;
     next();
   } catch (error) {
-    if (error.message === "Invalide signature") {
+    if (error.message === "Invalid signature") {
       error.status = 401;
     }
     next(error);

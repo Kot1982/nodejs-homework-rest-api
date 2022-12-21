@@ -21,19 +21,19 @@ const userSchema = Schema(
       type: String,
       default: null,
     },
-    avatarURL:{
+    avatarURL: {
       type: String,
       required: true,
     },
     verify: {
-    type: Boolean,
-    default: false,
-  },
+      type: Boolean,
+      default: false,
+    },
     verificationToken: {
-    type: String,
-    required: [true, 'Verify token is required'],
+      type: String,
+      required: [true, "Verify token is required"],
+    },
   },
-  },    
   { versionKey: false, timestamps: true }
 );
 
@@ -43,18 +43,20 @@ const registerJoiSchema = Joi.object({
   password: Joi.string().required(),
   email: Joi.string().required(),
   subscription: Joi.string().valid("starter", "pro", "business"),
-  
 });
 
 const loginJoiSchema = Joi.object({
   password: Joi.string().required(),
   email: Joi.string().required(),
-  
 });
 
 const verifyLoginJoiSchema = Joi.object({
   email: Joi.string().required(),
-  
 });
 
-module.exports = { User, registerJoiSchema, loginJoiSchema, verifyLoginJoiSchema };
+module.exports = {
+  User,
+  registerJoiSchema,
+  loginJoiSchema,
+  verifyLoginJoiSchema,
+};
